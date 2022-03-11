@@ -12,9 +12,8 @@ Grid::Grid(int Lines, int Columns)
 
         for (int j = 0; j < Columns; j++)
         {
-            Types::GridBox* newBox = new Types::GridBox(i, j, false, (Columns * i + j));
-            grids.insert(grids.end(), newBox);
-            //Console.Write($"{newBox.Index}\n");
+            Types::GridBox* newBox = new Types::GridBox(i, j, false, (yLength * i + j));
+            gridBoxes.push_back(newBox);
         }
     }
 	//drawBattlefield(Lines, Columns);
@@ -25,16 +24,16 @@ Grid::~Grid()
 
 }
 
-void Grid::drawBattlefield(int Lines, int Columns)
+void Grid::drawBattlefield()
 {
-    for (int i = 0; i < Lines; i++)
+    for (int i = 0; i < xLenght; i++)
     {
-        for (int j = 0; j < Columns; j++)
+        for (int j = 0; j < yLength; j++)
         {
-            Types::GridBox* currentgrid = new Types::GridBox();
+            Types::GridBox* currentgrid = gridBoxes[yLength * i + j];
             if (currentgrid->ocupied)
             {
-                //if()
+
                 printf("[X]\t");
             }
             else
