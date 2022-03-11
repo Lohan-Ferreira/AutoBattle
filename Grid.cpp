@@ -31,7 +31,7 @@ void Grid::drawBattlefield()
         for (int j = 0; j < yLength; j++)
         {
             Types::GridBox* currentgrid = gridBoxes[yLength * i + j];
-            if (currentgrid->ocupied)
+            if (currentgrid->isOcupied)
             {
 
                 printf("[X]\t");
