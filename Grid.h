@@ -10,12 +10,17 @@ public:
     Grid(int Lines, int Columns);
     ~Grid();
 
-    std::vector<Types::GridBox*> gridBoxes;
+    void drawBattlefield();
+    int getGridBoundaryX();
+    int getGridBoundaryY();
+    Types::GridBox* getBoxAtPosition(int x, int y);
+
+private:
 
     int xLenght;
     int yLength;
+    std::vector<Types::GridBox*> gridBoxes;
+
     
-    // prints the matrix that indicates the tiles of the battlefield
-    void drawBattlefield();
 };
 
