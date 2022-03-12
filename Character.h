@@ -6,7 +6,7 @@ class Character
 {
 public:
 
-    Character(Types::CharacterClass charcaterClass, float health, float baseDamage, int index);
+    Character(Types::CharacterClass charcaterClass, float hp, float baseDmg, int index);
     ~Character();
 
     bool StartTurn(Grid* battlefield);
@@ -19,13 +19,13 @@ public:
 
 private:
 
-    float Health;
-    float BaseDamage;
-    float DamageMultiplier;
-    int PlayerIndex;
+    float health;
+    float baseDamage;
+    float damageMultiplier;
+    int playerIndex;
     Character* target;
-    bool IsDead;
-    char Icon;
+    bool isDead;
+    char icon;
     Types::GridBox* currentBox;
 
 

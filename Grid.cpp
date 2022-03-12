@@ -22,7 +22,7 @@ Grid::~Grid()
 
 }
 
-void Grid::drawBattlefield()
+void Grid::DrawBattlefield()
 {
     for (int i = 0; i < xLenght; i++)
     {
@@ -44,7 +44,7 @@ void Grid::drawBattlefield()
     std::cout << std::endl;
 }
 
-Types::GridBox* Grid::getBoxAtPosition(int x, int y)
+Types::GridBox* Grid::GetBoxAtPosition(int x, int y)
 {
     Types::GridBox* gridBox;
     try
@@ -59,12 +59,12 @@ Types::GridBox* Grid::getBoxAtPosition(int x, int y)
     
 }
 
-int Grid::getGridBoundaryX()
+int Grid::GetGridBoundaryX()
 {
     return xLenght;
 }
 
-int Grid::getGridBoundaryY()
+int Grid::GetGridBoundaryY()
 {
     return yLength;
 }

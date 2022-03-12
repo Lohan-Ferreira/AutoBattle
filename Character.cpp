@@ -3,16 +3,16 @@
 #include <iostream>
 
 
-Character::Character(Types::CharacterClass charcaterClass, float health, float baseDamage, int index)
+Character::Character(Types::CharacterClass charcaterClass, float hp, float baseDmg, int index)
 {
-    DamageMultiplier = 1.0;
-    Health = health;
-    BaseDamage = baseDamage;
-    PlayerIndex = index;
-    IsDead = false;
+    damageMultiplier = 1.0;
+    health = hp;
+    baseDamage = baseDmg;
+    playerIndex = index;
+    isDead = false;
     currentBox = nullptr;
     target = nullptr;
-    Icon = 'A' + PlayerIndex;
+    icon = 'A' + playerIndex;
 }
 
 Character::~Character() 
@@ -25,7 +25,7 @@ Character::~Character()
 
 void Character::TakeDamage(float amount) 
 {
-	if ((Health -= BaseDamage) <= 0) 
+	if ((health -= baseDamage) <= 0) 
 	{
 		Die();
 	}
@@ -49,12 +49,12 @@ Types::GridBox Character::GetCurrentBox()
 
 void Character::Die() 
 {
-    IsDead = true;
+    isDead = true;
 }
 
 void Character::WalkTo(Grid* battlefield, int xDiff, int yDiff) 
 {
-    Types::GridBox* nextPos = battlefield->getBoxAtPosition(currentBox->xIndex + Sign(xDiff), currentBox->yIndex + Sign(yDiff));
+    Types::GridBox* nextPos = battlefield->GetBoxAtPosition(currentBox->xIndex + Sign(xDiff), currentBox->yIndex + Sign(yDiff));
     currentBox->isOcupied = false;
     nextPos->isOcupied = true;
     currentBox = nextPos;
@@ -83,12 +83,12 @@ bool Character::StartTurn(Grid* battlefield) {
 
 int Character::GetIndex()
 {
-    return PlayerIndex;
+    return playerIndex;
 }
 
 bool Character::GetIsDead()
 {
-    return IsDead;
+    return isDead;
 }
 
 bool Character::CheckCloseTargets(int xDiff, int yDiff)
@@ -98,7 +98,7 @@ bool Character::CheckCloseTargets(int xDiff, int yDiff)
 
 void Character::Attack(Character* target) 
 {
-    target->TakeDamage(BaseDamage * DamageMultiplier);
+    target->TakeDamage(baseDamage * damageMultiplier);
 }
 
 int Character::Sign(int num)

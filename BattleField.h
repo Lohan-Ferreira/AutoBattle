@@ -13,7 +13,7 @@ public:
 private:
 
 	Grid* grid;
-	Character *PlayerCharacter, *EnemyCharacter;
+	Character *playerCharacter, *enemyCharacter;
 	bool order;
 	bool gameOver;
 

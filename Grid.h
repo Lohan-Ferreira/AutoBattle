@@ -10,10 +10,10 @@ public:
     Grid(int Lines, int Columns);
     ~Grid();
 
-    void drawBattlefield();
-    int getGridBoundaryX();
-    int getGridBoundaryY();
-    Types::GridBox* getBoxAtPosition(int x, int y);
+    void DrawBattlefield();
+    int GetGridBoundaryX();
+    int GetGridBoundaryY();
+    Types::GridBox* GetBoxAtPosition(int x, int y);
 
 private:
 
