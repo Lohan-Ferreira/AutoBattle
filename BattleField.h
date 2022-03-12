@@ -9,24 +9,21 @@ class BattleField
 {
 public:
 
-	BattleField();
+	BattleField(int xLength, int yLength);
+
+
+
+private:
 
 	Grid* grid;
-	Types::GridBox* PlayerCurrentLocation;
-	Types::GridBox* EnemyCurrentLocation;
-	list<Character>* AllPlayers;
-	shared_ptr<Character> PlayerCharacter;
-	//Character* PlayerCharacter;
-	shared_ptr<Character>* EnemyCharacter;
-	int currentTurn;
-	int numberOfPossibleTiles;
+	Character *PlayerCharacter, *EnemyCharacter;
+	bool order;
+	bool gameOver;
 
 
 	void Setup();
 
-	void GetPlayerChoice();
-
-	void CreatePlayerCharacter(int classIndex);
+	void CreatePlayerCharacter();
 
 	void CreateEnemyCharacter();
 
@@ -38,11 +35,8 @@ public:
 
 	int GetRandomInt(int min, int max);
 
-	void AlocatePlayers();
+	void AlocateCharacters();
 
-	void AlocatePlayerCharacter();
-
-	void AlocateEnemyCharacter();
 };
 
 
