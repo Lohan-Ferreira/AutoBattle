@@ -9,6 +9,10 @@ Character::Character(Types::CharacterClass charcaterClass, float health, float b
     Health = health;
     BaseDamage = baseDamage;
     PlayerIndex = index;
+    IsDead = false;
+    currentBox = nullptr;
+    target = nullptr;
+    Icon = 'A' + PlayerIndex;
 }
 
 Character::~Character() 
