@@ -63,10 +63,8 @@ void BattleField::CreatePlayerCharacter()
 
     Types::CharacterClass characterClass = (Types::CharacterClass)classIndex;
     cout<<"Player Class Choice: {characterClass}";
-    PlayerCharacter = new Character(characterClass);
-    PlayerCharacter->Health = 100;
-    PlayerCharacter->BaseDamage = 20;
-    PlayerCharacter->PlayerIndex = 0;
+    PlayerCharacter = new Character(characterClass,100,20,0);
+
 
     
 
@@ -79,18 +77,16 @@ void BattleField::CreateEnemyCharacter()
     int randomInteger = GetRandomInt(1, 4);
     Types::CharacterClass enemyClass = (Types::CharacterClass)randomInteger;
     cout << "Enemy Class Choice: {enemyClass}";
-    EnemyCharacter = new Character(enemyClass);
-    EnemyCharacter->Health = 100;
-    EnemyCharacter->BaseDamage = 20;
-    EnemyCharacter->PlayerIndex = 1;
+    EnemyCharacter = new Character(enemyClass,100,20,1);
+
 
 }
 
 void BattleField::StartGame()
 {
     //populates the character variables and targets
-    EnemyCharacter->target = PlayerCharacter;
-    PlayerCharacter->target = EnemyCharacter;
+    EnemyCharacter->SetTarget(PlayerCharacter);
+    PlayerCharacter->SetTarget(EnemyCharacter);
 
     //Define randomly who goes first
     order = rand() % 2;
@@ -107,13 +103,13 @@ void BattleField::StartTurn()
 
         if (order)
         {
-            PlayerCharacter->StartTurn();
-            EnemyCharacter->StartTurn();
+            if(PlayerCharacter->StartTurn(grid)) grid->drawBattlefield();
+            if(EnemyCharacter->StartTurn(grid)) grid->drawBattlefield();
         }
         else
         {
-            EnemyCharacter->StartTurn();
-            PlayerCharacter->StartTurn();
+            if(EnemyCharacter->StartTurn(grid)) grid->drawBattlefield();
+            if(PlayerCharacter->StartTurn(grid))grid->drawBattlefield();
         }
 
         HandleTurn();
@@ -123,12 +119,12 @@ void BattleField::StartTurn()
 
 void BattleField::HandleTurn()
 {
-    if (PlayerCharacter->IsDead)
+    if (PlayerCharacter->GetIsDead())
     {
         cout << "Player team wins!!";
         gameOver = true;
     }
-    else if (EnemyCharacter->IsDead)
+    else if (EnemyCharacter->GetIsDead())
     {
         cout << "Enemy team wins!!";
         gameOver = true;
@@ -157,12 +153,14 @@ void BattleField::AlocateCharacters()
     int random = GetRandomInt(0,grid->getGridBoundaryY()-1);
     Types::GridBox* RandomLocation = grid->getBoxAtPosition(random,0);
     RandomLocation->isOcupied = true;
-    PlayerCharacter->currentBox = RandomLocation;
+    PlayerCharacter->SetCurrentBox(RandomLocation);
 
 
     //Set enemy character in random position of last column
     random = GetRandomInt(0, grid->getGridBoundaryY() - 1);
     RandomLocation = grid->getBoxAtPosition(random, grid->getGridBoundaryY()-1);
+    RandomLocation->isOcupied = true;
+    EnemyCharacter->SetCurrentBox(RandomLocation);
 
 
     grid->drawBattlefield();
