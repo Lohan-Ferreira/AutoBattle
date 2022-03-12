@@ -35,7 +35,7 @@ void Grid::DrawBattlefield()
             if (currentgrid->isOcupied)
             {
 
-                std::cout << "[X]\t";
+                std::cout << "["<<currentgrid->Index<<"]\t";
             }
             else
             {
