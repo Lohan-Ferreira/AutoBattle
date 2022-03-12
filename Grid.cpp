@@ -1,12 +1,11 @@
 #include "Grid.h"
-
+#include <iostream>
 
 
 Grid::Grid(int Lines, int Columns)
 {
     xLenght = Lines;
     yLength = Columns;
-    //Console.WriteLine("The battle field has been created\n");
     for (int i = 0; i < Lines; i++)
     {
 
@@ -16,7 +15,6 @@ Grid::Grid(int Lines, int Columns)
             gridBoxes.push_back(newBox);
         }
     }
-	//drawBattlefield(Lines, Columns);
 }
 
 Grid::~Grid() 
@@ -34,16 +32,16 @@ void Grid::drawBattlefield()
             if (currentgrid->isOcupied)
             {
 
-                printf("[X]\t");
+                std::cout << "[X]\t";
             }
             else
             {
-                printf("[ ]\t");
+                std::cout << "[ ]\t";
             }
         }
-        printf("\n");
+       std::cout << std::endl;
     }
-    printf("\n");
+    std::cout << std::endl;
 }
 
 Types::GridBox* Grid::getBoxAtPosition(int x, int y)

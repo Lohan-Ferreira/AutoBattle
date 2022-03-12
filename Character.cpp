@@ -2,7 +2,7 @@
 #include "Character.h"
 #include <iostream>
 
-using namespace std;
+
 Character::Character(Types::CharacterClass charcaterClass, float health, float baseDamage, int index)
 {
     DamageMultiplier = 1.0;

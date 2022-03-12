@@ -19,7 +19,7 @@ public:
         }
     };
 
-    enum CharacterClass
+    enum class CharacterClass
     {
         Paladin = 1,
         Warrior = 2,

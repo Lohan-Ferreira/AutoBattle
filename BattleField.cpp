@@ -3,10 +3,6 @@
 #include <iostream>
 #include <string>
 
-
-
-using namespace std;
-
 BattleField::BattleField(int xLength, int yLength) {
     
     grid = new Grid(xLength, yLength);
@@ -34,11 +30,11 @@ void BattleField::CreatePlayerCharacter()
     do{
 
         //asks for the player to choose between for possible classes via console.
-        cout << "Choose Between One of this Classes:\n";
-        cout << "[1] Paladin, [2] Warrior, [3] Cleric, [4] Archer\n";
+        std::cout << "Choose Between One of this Classes:\n";
+        std::cout << "[1] Paladin, [2] Warrior, [3] Cleric, [4] Archer\n";
 
-        cin >> choice;
-        if (cin.good())
+        std::cin >> choice;
+        if (std::cin.good())
         {
             if (choice >= 1 && choice <= 4)
             {
@@ -46,21 +42,21 @@ void BattleField::CreatePlayerCharacter()
             }
             else
             {
-                cout << "Invalid input;" << endl;
+                std::cout << "Invalid input;" << std::endl;
             }
         }
         else
         {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input;" << endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input;" << std::endl;
         }
 
     } while (classIndex < 0);
 
 
-    Types::CharacterClass characterClass = (Types::CharacterClass)classIndex;
-    cout<<"Player Class Choice: {characterClass}";
+    Types::CharacterClass characterClass = Types::CharacterClass(classIndex);
+    std::cout<<"Player Class Choice: {characterClass}\n";
     PlayerCharacter = new Character(characterClass,100,20,0);
 
 
@@ -74,7 +70,7 @@ void BattleField::CreateEnemyCharacter()
     
     int randomInteger = GetRandomInt(1, 4);
     Types::CharacterClass enemyClass = (Types::CharacterClass)randomInteger;
-    cout << "Enemy Class Choice: {enemyClass}";
+    std::cout << "Enemy Class Choice: {enemyClass}\n";
     EnemyCharacter = new Character(enemyClass,100,20,1);
 
 
@@ -119,12 +115,12 @@ void BattleField::HandleTurn()
 {
     if (PlayerCharacter->GetIsDead())
     {
-        cout << "Player team wins!!";
+        std::cout << "Player team wins!!";
         gameOver = true;
     }
     else if (EnemyCharacter->GetIsDead())
     {
-        cout << "Enemy team wins!!";
+        std::cout << "Enemy team wins!!";
         gameOver = true;
     }
 }

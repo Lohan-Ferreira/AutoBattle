@@ -5,7 +5,7 @@
 
 int main()
 {
-    srand(time(0));
+    srand(time(NULL));
     BattleField* battleField = new BattleField(5,5);
 }
 
