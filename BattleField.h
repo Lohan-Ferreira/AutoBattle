@@ -1,8 +1,5 @@
 #pragma once
 #include "Character.h"
-#include "Types.h"
-#include <list>
-#include <iostream>
 #include "Grid.h"
 using namespace std;
 class BattleField

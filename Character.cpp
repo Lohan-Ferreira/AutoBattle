@@ -1,9 +1,6 @@
-#include "Grid.h"
+
 #include "Character.h"
-#include "Types.h"
-#include "Character.h"
-#include <vector>
-#include <algorithm>
+#include <iostream>
 
 using namespace std;
 Character::Character(Types::CharacterClass charcaterClass, float health, float baseDamage, int index)
@@ -92,12 +89,12 @@ bool Character::GetIsDead()
 
 bool Character::CheckCloseTargets(int xDiff, int yDiff)
 {
-    return xDiff <= 1 && yDiff <= 1;
+    return abs(xDiff) <= 1 && abs(yDiff) <= 1;
 }
 
 void Character::Attack(Character* target) 
 {
-    target->TakeDamage(BaseDamage);
+    target->TakeDamage(BaseDamage * DamageMultiplier);
 }
 
 int Character::Sign(int num)
