@@ -37,6 +37,7 @@ void Character::SetTarget(Character* t)
     target = t;
 }
 
+
 void Character::SetCurrentBox(Types::GridBox* newBox)
 {
     if (currentBox != nullptr)
@@ -63,27 +64,28 @@ void Character::Die()
 
 void Character::WalkTo(Grid* battlefield, int xDiff, int yDiff) 
 {
+    //Find position closer to target
     Types::GridBox* nextPos = battlefield->GetBoxAtPosition(currentBox->xIndex + Sign(xDiff), currentBox->yIndex + Sign(yDiff));
-    currentBox->isOcupied = false;
-    currentBox->Index = -1;
-    nextPos->isOcupied = true;
-    nextPos->Index = playerIndex;
-    currentBox = nextPos;
+
+    //Move to new box in grid
+    SetCurrentBox(nextPos);
+
 }
 
 
 
 bool Character::StartTurn(Grid* battlefield) {
 
+    //Calculate coords distance
     int xDiff = target->GetCurrentBox().xIndex - currentBox->xIndex;
     int yDiff = target->GetCurrentBox().yIndex - currentBox->yIndex;
 
-    if (CheckCloseTargets(xDiff,yDiff))
+    if (CheckCloseTargets(xDiff,yDiff))  //try to attack
     {
         Attack(target);
         return false;
     }
-    else
+    else    //if can't, move closer to target
     { 
         WalkTo(battlefield, xDiff, yDiff);
         return true;
@@ -115,6 +117,7 @@ void Character::Attack(Character* target)
     std::cout << "Player " << playerIndex << " dealt "<< damage << " damage to player " << target->playerIndex<<std::endl;
 }
 
+/* Sign function to determine in which direction the target is*/
 int Character::Sign(int num)
 {
     return (num > 0) - (num < 0);

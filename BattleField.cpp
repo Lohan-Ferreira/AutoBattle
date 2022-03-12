@@ -93,8 +93,8 @@ void BattleField::StartGame()
     }
     else 
     {
-        battleOrder.push_back(playerCharacter);
         battleOrder.push_back(enemyCharacter);
+        battleOrder.push_back(playerCharacter);
     }
 
     StartTurn();
@@ -103,10 +103,9 @@ void BattleField::StartGame()
 
 void BattleField::StartTurn() 
 {
-
+    
     while (!gameOver)
     {
-
         for (auto character : battleOrder)
         {
             if (character->StartTurn(grid)) grid->DrawBattlefield();

@@ -30,6 +30,7 @@ public:
         Archer = 4
     };
 
+    /*Operator overload to allow printing of enum class*/
     friend std::ostream& operator<< (std::ostream& stm, CharacterClass characterClass)
     {
         switch (characterClass)

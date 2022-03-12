@@ -31,7 +31,7 @@ void Grid::DrawBattlefield()
     {
         for (int j = 0; j < yLength; j++)
         {
-            Types::GridBox* currentgrid = gridBoxes.at(yLength * i + j);
+            Types::GridBox* currentgrid = gridBoxes.at((int64_t)yLength * i + j);
             if (currentgrid->isOcupied)
             {
 
@@ -52,7 +52,7 @@ Types::GridBox* Grid::GetBoxAtPosition(int x, int y)
     Types::GridBox* gridBox;
     try
     {
-        gridBox = gridBoxes.at(yLength * x + y);
+        gridBox = gridBoxes.at(((int64_t)yLength * x + y));
         return gridBox;
     }
     catch (const std::exception e)
