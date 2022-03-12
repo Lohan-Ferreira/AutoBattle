@@ -6,7 +6,11 @@
 int main()
 {
     srand(time(NULL));
-    BattleField* battleField = new BattleField(5,5);
+    BattleField* battleField = new BattleField(15,3);
+
+    delete(battleField);
+
+    return 0;
 }
 
 

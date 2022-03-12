@@ -11,7 +11,7 @@ Grid::Grid(int Lines, int Columns)
 
         for (int j = 0; j < Columns; j++)
         {
-            Types::GridBox* newBox = new Types::GridBox(i, j, false, (yLength * i + j));
+            Types::GridBox* newBox = new Types::GridBox(i, j, false, -1);
             gridBoxes.push_back(newBox);
         }
     }
@@ -19,7 +19,10 @@ Grid::Grid(int Lines, int Columns)
 
 Grid::~Grid() 
 {
-
+    for (int i = 0; i < gridBoxes.size(); i++)
+    {
+        delete gridBoxes[i];
+    }
 }
 
 void Grid::DrawBattlefield()

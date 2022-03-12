@@ -1,6 +1,6 @@
 #pragma once
 #include "Grid.h"
-#include "Types.h"
+
 
 class Character
 {
@@ -25,7 +25,6 @@ private:
     int playerIndex;
     Character* target;
     bool isDead;
-    char icon;
     Types::GridBox* currentBox;
 
 

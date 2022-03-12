@@ -1,4 +1,7 @@
 #pragma once
+
+#include <iostream>
+
 class Types
 {
 public:
@@ -26,6 +29,18 @@ public:
         Cleric = 3,
         Archer = 4
     };
+
+    friend std::ostream& operator<< (std::ostream& stm, CharacterClass characterClass)
+    {
+        switch (characterClass)
+        {
+        case CharacterClass::Paladin : return stm << "Paladin";
+        case CharacterClass::Warrior : return stm << "Warrior";
+        case CharacterClass::Cleric : return stm << "Cleric";
+        case CharacterClass::Archer : return stm << "Archer";
+        default: return stm << "";
+        }
+    }
 
 };
 

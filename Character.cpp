@@ -12,7 +12,7 @@ Character::Character(Types::CharacterClass charcaterClass, float hp, float baseD
     isDead = false;
     currentBox = nullptr;
     target = nullptr;
-    icon = 'A' + playerIndex;
+
 }
 
 Character::~Character() 
@@ -37,9 +37,18 @@ void Character::SetTarget(Character* t)
     target = t;
 }
 
-void Character::SetCurrentBox(Types::GridBox* gridBox)
+void Character::SetCurrentBox(Types::GridBox* newBox)
 {
-    currentBox = gridBox;
+    if (currentBox != nullptr)
+    {
+        currentBox->Index = -1;
+        currentBox->isOcupied = false;
+        
+    }
+    newBox->Index = playerIndex;
+    newBox->isOcupied = true;
+    currentBox = newBox;
+
 }
 
 Types::GridBox Character::GetCurrentBox()
@@ -56,7 +65,9 @@ void Character::WalkTo(Grid* battlefield, int xDiff, int yDiff)
 {
     Types::GridBox* nextPos = battlefield->GetBoxAtPosition(currentBox->xIndex + Sign(xDiff), currentBox->yIndex + Sign(yDiff));
     currentBox->isOcupied = false;
+    currentBox->Index = -1;
     nextPos->isOcupied = true;
+    nextPos->Index = playerIndex;
     currentBox = nextPos;
 }
 

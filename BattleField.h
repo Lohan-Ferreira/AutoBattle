@@ -1,13 +1,13 @@
 #pragma once
 #include "Character.h"
-#include "Grid.h"
+
 
 class BattleField
 {
 public:
 
 	BattleField(int xLength, int yLength);
-
+	~BattleField();
 
 
 private:
