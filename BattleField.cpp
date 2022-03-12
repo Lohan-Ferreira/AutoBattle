@@ -86,6 +86,16 @@ void BattleField::StartGame()
 
     //Define randomly who goes first
     order = rand() % 2;
+    if (order)
+    {
+        battleOrder.push_back(playerCharacter);
+        battleOrder.push_back(enemyCharacter);
+    }
+    else 
+    {
+        battleOrder.push_back(playerCharacter);
+        battleOrder.push_back(enemyCharacter);
+    }
 
     StartTurn();
 
@@ -97,35 +107,33 @@ void BattleField::StartTurn()
     while (!gameOver)
     {
 
-        if (order)
+        for (auto character : battleOrder)
         {
-            if(playerCharacter->StartTurn(grid)) grid->DrawBattlefield();
-            if(enemyCharacter->StartTurn(grid)) grid->DrawBattlefield();
-        }
-        else
-        {
-            if(enemyCharacter->StartTurn(grid)) grid->DrawBattlefield();
-            if(playerCharacter->StartTurn(grid))grid->DrawBattlefield();
+            if (character->StartTurn(grid)) grid->DrawBattlefield();
+            if (HandleTurn()) break;
         }
 
-        HandleTurn();
     }
 
 }
 
-void BattleField::HandleTurn()
+bool BattleField::HandleTurn()
 {
     //if someone died finish the game
     if (playerCharacter->GetIsDead())
     {
-        std::cout << "Player team wins!!";
+        std::cout << "Enemy team wins!!";
         gameOver = true;
+        
     }
     else if (enemyCharacter->GetIsDead())
     {
-        std::cout << "Enemy team wins!!";
+        std::cout << "Player team wins!!";
         gameOver = true;
+        
     }
+
+    return gameOver;
 }
 
 int BattleField::GetRandomInt(int min, int max)

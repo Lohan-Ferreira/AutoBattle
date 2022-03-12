@@ -14,6 +14,7 @@ private:
 
 	Grid* grid;
 	Character *playerCharacter, *enemyCharacter;
+	std::vector<Character*> battleOrder;
 	bool order;
 	bool gameOver;
 
@@ -28,7 +29,7 @@ private:
 
 	void StartTurn();
 
-	void HandleTurn();
+	bool HandleTurn();
 
 	int GetRandomInt(int min, int max);
 

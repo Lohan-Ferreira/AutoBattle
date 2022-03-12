@@ -104,12 +104,15 @@ bool Character::GetIsDead()
 
 bool Character::CheckCloseTargets(int xDiff, int yDiff)
 {
+    //Use absolute distance between self and target to determine if target is close 
     return abs(xDiff) <= 1 && abs(yDiff) <= 1;
 }
 
 void Character::Attack(Character* target) 
 {
-    target->TakeDamage(baseDamage * damageMultiplier);
+    float damage = baseDamage * damageMultiplier;
+    target->TakeDamage(damage);
+    std::cout << "Player " << playerIndex << " dealt "<< damage << " damage to player " << target->playerIndex<<std::endl;
 }
 
 int Character::Sign(int num)
