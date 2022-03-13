@@ -2,9 +2,22 @@
 
 
 BattleField::BattleField(int xLength, int yLength) {
+    if (xLength > 1 && yLength > 1)
+    {
+        grid = new Grid(xLength, yLength);
+        Setup();
+    }
+    else
+    {
+        grid = nullptr;
+        std::cout << "Invalid size, min grid size 1x2";
+    }
+
+
+
     
-    grid = new Grid(xLength, yLength);
-    Setup();
+   
+
 }
 
 BattleField::~BattleField()

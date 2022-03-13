@@ -13,10 +13,10 @@ public:
 private:
 
 	Grid* grid;
-	Character *playerCharacter, *enemyCharacter;
+	Character *playerCharacter = nullptr, *enemyCharacter = nullptr;
 	std::vector<Character*> battleOrder;
-	bool order;
-	bool gameOver;
+	bool order = false;
+	bool gameOver = false;
 
 
 	void Setup();
